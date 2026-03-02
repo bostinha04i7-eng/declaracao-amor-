@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Você ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TELA DE SENHA -->
+<div id="tela-senha">
+    <div class="senha-box">
+        <h2>💖 Acesso especial 💖</h2>
+        <p>Digite a senha para entrar</p>
+
+        <input type="password" id="inputSenha" placeholder="Senha">
+        <button onclick="verificarSenha()">Entrar</button>
+
+        <span id="erroSenha"></span>
+    </div>
+</div>
+
+<!-- CONTEÚDO DO SITE -->
+<div id="conteudo" style="display: none;">
+    <audio id="musica" src="musica.mp3" loop></audio>
+
+    <div class="container">
+        <h1>❤️ Oi, meu amor ❤️</h1>
+
+        <div class="slider">
+            <img id="foto" src="fotos/foto1.jpg" alt="Foto">
+        </div>
+
+        <p id="mensagem">Tenho algo especial para te dizer...</p>
+
+        <div id="galeria"></div>
+
+        <button id="botao" onclick="interagir()">Clique aqui 💖</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
