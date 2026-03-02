@@ -1,7 +1,7 @@
 /***********************
  * TELA DE SENHA
  ***********************/
-const senhaCorreta = "luizaeuteamomuito"; // <<< TROQUE A SENHA AQUI
+const senhaCorreta = "luizaeuteamomuito"; // <<< MUDE A SENHA AQUI
 
 function verificarSenha() {
     const input = document.getElementById("inputSenha").value;
@@ -41,12 +41,16 @@ const fotos = [
     "fotos/foto5.jpg"
 ];
 
+const FOTO_FINAL = 2; // foto3.jpg (índice começa em 0)
+
 let indiceMensagem = 0;
 let indiceFoto = 0;
 let indiceGaleria = 0;
 let musicaTocando = false;
 
-/* Botão principal */
+/***********************
+ * BOTÃO PRINCIPAL
+ ***********************/
 function interagir() {
     trocarMensagem();
     trocarFoto();
@@ -55,13 +59,16 @@ function interagir() {
     adicionarFoto();
 }
 
-/* Mensagens + bloqueio final */
+/***********************
+ * MENSAGENS + BLOQUEIO
+ ***********************/
 function trocarMensagem() {
     const mensagem = document.getElementById("mensagem");
     const botao = document.getElementById("botao");
 
     mensagem.textContent = mensagens[indiceMensagem];
 
+    // Última mensagem
     if (indiceMensagem === mensagens.length - 1) {
         botao.disabled = true;
         botao.textContent = "❤️ Para sempre nós ❤️";
@@ -71,18 +78,26 @@ function trocarMensagem() {
     indiceMensagem++;
 }
 
-/* Foto muda SOMENTE no clique */
+/***********************
+ * FOTO – SEMPRE TERMINA NA FOTO 3
+ ***********************/
 function trocarFoto() {
-    indiceFoto++;
-
-    if (indiceFoto >= fotos.length) {
-        indiceFoto = 0;
+    // Se chegou na última mensagem, força a foto final
+    if (indiceMensagem === mensagens.length - 1) {
+        indiceFoto = FOTO_FINAL;
+    } else {
+        indiceFoto++;
+        if (indiceFoto >= fotos.length) {
+            indiceFoto = 0;
+        }
     }
 
     document.getElementById("foto").src = fotos[indiceFoto];
 }
 
-/* Música */
+/***********************
+ * MÚSICA
+ ***********************/
 function tocarMusica() {
     if (!musicaTocando) {
         document.getElementById("musica").play();
@@ -90,7 +105,9 @@ function tocarMusica() {
     }
 }
 
-/* Corações */
+/***********************
+ * CORAÇÕES
+ ***********************/
 function criarCoracao() {
     const coracao = document.createElement("div");
     coracao.classList.add("coracao");
@@ -104,7 +121,9 @@ function criarCoracao() {
     setTimeout(() => coracao.remove(), 5000);
 }
 
-/* Galeria por clique */
+/***********************
+ * GALERIA POR CLIQUE
+ ***********************/
 function adicionarFoto() {
     if (indiceGaleria >= fotos.length) return;
 
