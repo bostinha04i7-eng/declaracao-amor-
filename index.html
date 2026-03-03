@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<!-- CONTEÚDO DO SITE -->
+<!-- CONTEÚDO -->
 <div id="conteudo" style="display: none;">
     <audio id="musica" src="musica.mp3" loop></audio>
 
@@ -37,6 +37,21 @@
         <div id="galeria"></div>
 
         <button id="botao" onclick="interagir()">Clique aqui 💖</button>
+    </div>
+</div>
+
+<!-- OVERLAY FINAL -->
+<div id="overlay-surpresa">
+    <div class="estrelas" id="estrelas"></div>
+
+    <div class="pedido-box">
+        <h2 class="anel">💍</h2>
+        <p id="textoPedido"></p>
+
+        <div class="botoes">
+            <button onclick="resposta('sim')">Sim 💖</button>
+            <button onclick="resposta('certeza')">Com certeza 😍</button>
+        </div>
     </div>
 </div>
 

@@ -1,7 +1,7 @@
 /***********************
  * TELA DE SENHA
  ***********************/
-const senhaCorreta = "luizaeuteamomuito"; // <<< MUDE A SENHA AQUI
+const senhaCorreta = "luizaeuteamomuito";
 
 function verificarSenha() {
     const input = document.getElementById("inputSenha").value;
@@ -16,19 +16,16 @@ function verificarSenha() {
 }
 
 /***********************
- * CONTEÚDO PRINCIPAL
+ * CONTEÚDO
  ***********************/
 const mensagens = [
     "Desde que você entrou na minha vida, tudo ficou melhor ❤️",
     "Seu sorriso ilumina meus dias 😍",
-    "Cada momento com você é único (mesmo que nao sejam muitos kk) 💕",
-    "Sou grato até pelos seus sumiços que me fazem morrer de preocupação 😂",
-    "Sou grato por cada briga, cada discussão, cada momento difícil que passamos juntos, porque eles só fortaleceram nosso amor 💪❤️",
-    "Sei que eu cobro muito da sua presença, mas é porque eu te amo demais e não quero te perder 😢",
-    "Mesmo com todas as nossas diferenças, eu te amo do jeito que você é e não quero mudar nada em você 💖",
-    "Eu sei que às vezes eu sou difícil de lidar, mas é porque eu me importo tanto com você e quero que tudo seja perfeito para nós dois 😔",
-    "Espero que um dia a gente possa se encontrar pessoalmente e nos possamos ter nosso tao sonhado beijo, abraço e tudo mais que a gente sonha 💏",
-    "Espero que você saiba que eu te amo muito e que eu sempre vou estar aqui para você, mesmo que a gente esteja longe um do outro 💕",
+    "Cada momento com você é único 💕",
+    "Sou grato até pelos seus sumiços 😂",
+    "Sou grato por cada briga que fortaleceu nosso amor 💪❤️",
+    "Mesmo com nossas diferenças, eu te amo 💖",
+    "Espero que um dia possamos nos encontrar 💏",
     "Eu sou muito grato por ter você 💖",
     "Feliz aniversário, meu amor 🎂❤️"
 ];
@@ -41,7 +38,7 @@ const fotos = [
     "fotos/foto5.jpg"
 ];
 
-const FOTO_FINAL = 2; // foto3.jpg (índice começa em 0)
+const FOTO_FINAL = 2;
 
 let indiceMensagem = 0;
 let indiceFoto = 0;
@@ -60,7 +57,7 @@ function interagir() {
 }
 
 /***********************
- * MENSAGENS + BLOQUEIO
+ * MENSAGENS
  ***********************/
 function trocarMensagem() {
     const mensagem = document.getElementById("mensagem");
@@ -68,10 +65,10 @@ function trocarMensagem() {
 
     mensagem.textContent = mensagens[indiceMensagem];
 
-    // Última mensagem
     if (indiceMensagem === mensagens.length - 1) {
         botao.disabled = true;
         botao.textContent = "❤️ Para sempre nós ❤️";
+        setTimeout(mostrarPedidoFinal, 1500);
         return;
     }
 
@@ -79,10 +76,10 @@ function trocarMensagem() {
 }
 
 /***********************
- * FOTO – SEMPRE TERMINA NA FOTO 3
+ * FOTO
  ***********************/
 function trocarFoto() {
-    // Se chegou na última mensagem, força a foto final
+
     if (indiceMensagem === mensagens.length - 1) {
         indiceFoto = FOTO_FINAL;
     } else {
@@ -122,7 +119,7 @@ function criarCoracao() {
 }
 
 /***********************
- * GALERIA POR CLIQUE
+ * GALERIA
  ***********************/
 function adicionarFoto() {
     if (indiceGaleria >= fotos.length) return;
@@ -138,4 +135,56 @@ function adicionarFoto() {
     galeria.appendChild(div);
 
     indiceGaleria++;
+}
+
+/***********************
+ * ESTRELAS
+ ***********************/
+function criarEstrelas(){
+    const container = document.getElementById("estrelas");
+    for(let i=0;i<80;i++){
+        let estrela = document.createElement("span");
+        estrela.style.top = Math.random()*100+"%";
+        estrela.style.left = Math.random()*100+"%";
+        estrela.style.animationDelay = Math.random()*2+"s";
+        container.appendChild(estrela);
+    }
+}
+criarEstrelas();
+
+/***********************
+ * PEDIDO FINAL
+ ***********************/
+function mostrarPedidoFinal(){
+
+    const overlay = document.getElementById("overlay-surpresa");
+    const texto = document.getElementById("textoPedido");
+
+    texto.innerHTML =
+        "Nunca teve o pedido oficial...<br><br>" +
+        "Então aqui vai...<br><br>" +
+        "Luiza, meu amor, você aceita namorar comigo? 💖";
+
+    overlay.classList.add("ativo");
+
+    if(navigator.vibrate){
+        navigator.vibrate([200,100,200,300]);
+    }
+}
+
+function resposta(tipo){
+
+    const texto = document.getElementById("textoPedido");
+
+    if(tipo === "sim"){
+        texto.innerHTML = "Eu sabia que você diria sim 💖✨";
+    }else{
+        texto.innerHTML = "Eu já sabia que era 'com certeza' 😍💍";
+    }
+
+    document.querySelector(".botoes").style.display="none";
+
+    for(let i=0;i<40;i++){
+        setTimeout(criarCoracao, i*100);
+    }
 }
