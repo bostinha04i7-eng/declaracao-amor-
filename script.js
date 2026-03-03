@@ -175,8 +175,8 @@ function mostrarPedidoFinal(){
     if(!overlay || !texto) return;
 
     texto.innerHTML =
-        "Nunca teve o pedido oficial...<br><br>" +
-        "Então aqui vai...<br><br>" +
+        "Feliz aniversario, meu amor!!!<br><br>" +
+        "Nunca te fiz um pedido oficial...<br><br>" +
         "Luiza, meu amor, você aceita namorar comigo? 💖";
 
     overlay.classList.add("ativo");
