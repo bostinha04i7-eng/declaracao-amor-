@@ -187,16 +187,11 @@ function mostrarPedidoFinal(){
     }
 }
 
-function resposta(tipo){
-
+function resposta(){
     const texto = document.getElementById("textoPedido");
     const botoes = document.querySelector(".botoes");
 
-    if(tipo === "sim"){
-        texto.innerHTML = "Eu sabia que você diria sim 💖✨";
-    }else{
-        texto.innerHTML = "Eu já sabia que era 'com certeza' 😍💍";
-    }
+    texto.innerHTML = "Eu sabia que você diria SIM 💖✨";
 
     if(botoes) botoes.style.display="none";
 
@@ -204,3 +199,29 @@ function resposta(tipo){
         setTimeout(criarCoracao, i*100);
     }
 }
+
+/***********************
+ * BOTÃO NÃO QUE FOGE
+ ***********************/
+function fugirBotao() {
+
+    const botao = document.getElementById("btnNao");
+    if(!botao) return;
+
+    const larguraTela = window.innerWidth - botao.offsetWidth;
+    const alturaTela = window.innerHeight - botao.offsetHeight;
+
+    const novaPosicaoX = Math.random() * larguraTela;
+    const novaPosicaoY = Math.random() * alturaTela;
+
+    botao.style.position = "fixed";
+    botao.style.left = novaPosicaoX + "px";
+    botao.style.top = novaPosicaoY + "px";
+}
+
+/* Funciona também no celular */
+document.addEventListener("touchstart", function(e){
+    if(e.target.id === "btnNao"){
+        fugirBotao();
+    }
+});
