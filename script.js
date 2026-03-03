@@ -44,11 +44,21 @@ let indiceMensagem = 0;
 let indiceFoto = 0;
 let indiceGaleria = 0;
 let musicaTocando = false;
+let pedidoJaMostrado = false;
 
 /***********************
  * BOTÃO PRINCIPAL
  ***********************/
 function interagir() {
+
+    if (indiceMensagem >= mensagens.length - 1) {
+        if (!pedidoJaMostrado) {
+            pedidoJaMostrado = true;
+            setTimeout(mostrarPedidoFinal, 1000);
+        }
+        return;
+    }
+
     trocarMensagem();
     trocarFoto();
     tocarMusica();
@@ -68,7 +78,6 @@ function trocarMensagem() {
     if (indiceMensagem === mensagens.length - 1) {
         botao.disabled = true;
         botao.textContent = "❤️ Para sempre nós ❤️";
-        setTimeout(mostrarPedidoFinal, 1500);
         return;
     }
 
@@ -142,6 +151,8 @@ function adicionarFoto() {
  ***********************/
 function criarEstrelas(){
     const container = document.getElementById("estrelas");
+    if(!container) return;
+
     for(let i=0;i<80;i++){
         let estrela = document.createElement("span");
         estrela.style.top = Math.random()*100+"%";
@@ -150,7 +161,8 @@ function criarEstrelas(){
         container.appendChild(estrela);
     }
 }
-criarEstrelas();
+
+document.addEventListener("DOMContentLoaded", criarEstrelas);
 
 /***********************
  * PEDIDO FINAL
@@ -160,12 +172,15 @@ function mostrarPedidoFinal(){
     const overlay = document.getElementById("overlay-surpresa");
     const texto = document.getElementById("textoPedido");
 
+    if(!overlay || !texto) return;
+
     texto.innerHTML =
         "Nunca teve o pedido oficial...<br><br>" +
         "Então aqui vai...<br><br>" +
         "Luiza, meu amor, você aceita namorar comigo? 💖";
 
     overlay.classList.add("ativo");
+    overlay.style.display = "flex";
 
     if(navigator.vibrate){
         navigator.vibrate([200,100,200,300]);
@@ -175,6 +190,7 @@ function mostrarPedidoFinal(){
 function resposta(tipo){
 
     const texto = document.getElementById("textoPedido");
+    const botoes = document.querySelector(".botoes");
 
     if(tipo === "sim"){
         texto.innerHTML = "Eu sabia que você diria sim 💖✨";
@@ -182,7 +198,7 @@ function resposta(tipo){
         texto.innerHTML = "Eu já sabia que era 'com certeza' 😍💍";
     }
 
-    document.querySelector(".botoes").style.display="none";
+    if(botoes) botoes.style.display="none";
 
     for(let i=0;i<40;i++){
         setTimeout(criarCoracao, i*100);
