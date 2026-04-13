@@ -27,7 +27,7 @@ const mensagens = [
     "Somos praticamente a copia um do outro, isso me deixa fascinado 💖",
     "Espero que um dia possamos nos encontrar e termos nosso tao sonhado beijo 💏",
     "Eu sou muito grato por ter você 💖",
-    "Eu te adoro muito, muito mesmo, sempre vou querer ser bem mesmo de longe 💖",
+    "Eu te adoro muito, muito mesmo, sempre vou querer seu bem mesmo de longe 💖",
     "Do seu cachorrinho, Guilherme 🐶",
     "EU TE ADORO MUITO, JUSSARA! ❤️"
 ];
