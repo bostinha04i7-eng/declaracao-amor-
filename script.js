@@ -37,7 +37,8 @@ const fotos = [
     "fotos/foto2.jpg",
     "fotos/foto3.jpg",
     "fotos/foto4.jpg",
-    "fotos/foto5.jpg"
+    "fotos/foto5.jpg",
+    "fotos/foto6.jpg"
 ];
 
 // 👇 trava na foto3.jpg
