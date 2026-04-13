@@ -40,7 +40,7 @@ const fotos = [
     "fotos/foto5.jpg"
 ];
 
-// 👇 FOTO FINAL (foto3.jpg)
+// 👇 trava na foto3.jpg
 const FOTO_FINAL = 2;
 
 let indiceMensagem = 0;
@@ -52,11 +52,6 @@ let musicaTocando = false;
  * BOTÃO PRINCIPAL
  ***********************/
 function interagir() {
-
-    if (indiceMensagem >= mensagens.length - 1) {
-        return;
-    }
-
     trocarMensagem();
     trocarFoto();
     tocarMusica();
@@ -65,7 +60,7 @@ function interagir() {
 }
 
 /***********************
- * MENSAGENS
+ * MENSAGENS (CORRIGIDO)
  ***********************/
 function trocarMensagem() {
     const mensagem = document.getElementById("mensagem");
@@ -73,21 +68,20 @@ function trocarMensagem() {
 
     mensagem.textContent = mensagens[indiceMensagem];
 
+    // Mostra a última e só depois trava
     if (indiceMensagem === mensagens.length - 1) {
         botao.disabled = true;
         botao.textContent = "❤️ Para sempre nós ❤️";
-        return;
+    } else {
+        indiceMensagem++;
     }
-
-    indiceMensagem++;
 }
 
 /***********************
- * FOTO (ATUALIZADO)
+ * FOTO (CORRIGIDO)
  ***********************/
 function trocarFoto() {
 
-    // 👇 trava na foto 3 no final
     if (indiceMensagem === mensagens.length - 1) {
         indiceFoto = FOTO_FINAL;
     } else {
