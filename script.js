@@ -1,7 +1,7 @@
 /***********************
  * TELA DE SENHA
  ***********************/
-const senhaCorreta = "luizaeuteamomuito";
+const senhaCorreta = "cachorrinhodajussara";
 
 function verificarSenha() {
     const input = document.getElementById("inputSenha").value;
@@ -22,12 +22,14 @@ const mensagens = [
     "Desde que você entrou na minha vida, tudo ficou melhor ❤️",
     "Seu sorriso ilumina meus dias 😍",
     "Cada momento com você é único 💕",
-    "Sou grato até pelos seus sumiços 😂",
-    "Sou grato por cada briga que fortaleceu nosso amor 💪❤️",
-    "Mesmo com nossas diferenças, eu te amo 💖",
-    "Espero que um dia possamos nos encontrar 💏",
+    "Sou grato por vc me permitir te conhecer melhor a cada dia 💖",
+    "Voce é uma pessoa incrivel e que nosso futuro esteja nos planos de Deus❤️",
+    "Somos praticamente a copia um do outro, isso me deixa fascinado 💖",
+    "Espero que um dia possamos nos encontrar e termos nosso tao sonhado beijo 💏",
     "Eu sou muito grato por ter você 💖",
-    "Feliz aniversário, meu amor 🎂❤️"
+    "Eu te adoro muito, muito mesmo, sempre vou querer ser bem mesmo de longe 💖",
+    "Do seu cachorrinho, Guilherme 🐶",
+    "EU TE ADORO MUITO, JUSSARA! ❤️"
 ];
 
 const fotos = [
@@ -38,13 +40,13 @@ const fotos = [
     "fotos/foto5.jpg"
 ];
 
+// 👇 FOTO FINAL (foto3.jpg)
 const FOTO_FINAL = 2;
 
 let indiceMensagem = 0;
 let indiceFoto = 0;
 let indiceGaleria = 0;
 let musicaTocando = false;
-let pedidoJaMostrado = false;
 
 /***********************
  * BOTÃO PRINCIPAL
@@ -52,10 +54,6 @@ let pedidoJaMostrado = false;
 function interagir() {
 
     if (indiceMensagem >= mensagens.length - 1) {
-        if (!pedidoJaMostrado) {
-            pedidoJaMostrado = true;
-            setTimeout(mostrarPedidoFinal, 1000);
-        }
         return;
     }
 
@@ -85,10 +83,11 @@ function trocarMensagem() {
 }
 
 /***********************
- * FOTO
+ * FOTO (ATUALIZADO)
  ***********************/
 function trocarFoto() {
 
+    // 👇 trava na foto 3 no final
     if (indiceMensagem === mensagens.length - 1) {
         indiceFoto = FOTO_FINAL;
     } else {
@@ -145,83 +144,3 @@ function adicionarFoto() {
 
     indiceGaleria++;
 }
-
-/***********************
- * ESTRELAS
- ***********************/
-function criarEstrelas(){
-    const container = document.getElementById("estrelas");
-    if(!container) return;
-
-    for(let i=0;i<80;i++){
-        let estrela = document.createElement("span");
-        estrela.style.top = Math.random()*100+"%";
-        estrela.style.left = Math.random()*100+"%";
-        estrela.style.animationDelay = Math.random()*2+"s";
-        container.appendChild(estrela);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", criarEstrelas);
-
-/***********************
- * PEDIDO FINAL
- ***********************/
-function mostrarPedidoFinal(){
-
-    const overlay = document.getElementById("overlay-surpresa");
-    const texto = document.getElementById("textoPedido");
-
-    if(!overlay || !texto) return;
-
-    texto.innerHTML =
-        "Feliz aniversario, meu amor!!!<br><br>" +
-        "Nunca te fiz um pedido oficial...<br><br>" +
-        "Luiza, meu amor, você aceita namorar comigo? 💖";
-
-    overlay.classList.add("ativo");
-    overlay.style.display = "flex";
-
-    if(navigator.vibrate){
-        navigator.vibrate([200,100,200,300]);
-    }
-}
-
-function resposta(){
-    const texto = document.getElementById("textoPedido");
-    const botoes = document.querySelector(".botoes");
-
-    texto.innerHTML = "Eu sabia que você diria SIM 💖✨";
-
-    if(botoes) botoes.style.display="none";
-
-    for(let i=0;i<40;i++){
-        setTimeout(criarCoracao, i*100);
-    }
-}
-
-/***********************
- * BOTÃO NÃO QUE FOGE
- ***********************/
-function fugirBotao() {
-
-    const botao = document.getElementById("btnNao");
-    if(!botao) return;
-
-    const larguraTela = window.innerWidth - botao.offsetWidth;
-    const alturaTela = window.innerHeight - botao.offsetHeight;
-
-    const novaPosicaoX = Math.random() * larguraTela;
-    const novaPosicaoY = Math.random() * alturaTela;
-
-    botao.style.position = "fixed";
-    botao.style.left = novaPosicaoX + "px";
-    botao.style.top = novaPosicaoY + "px";
-}
-
-/* Funciona também no celular */
-document.addEventListener("touchstart", function(e){
-    if(e.target.id === "btnNao"){
-        fugirBotao();
-    }
-});
